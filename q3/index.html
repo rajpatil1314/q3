@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hello</title>
+<style>
+  
+    .banner {
+        background-color: #852020;
+        color: #fff;
+        padding: 50px 0;
+        text-align: center;
+    }
+
+   
+    .headline {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    
+    .custom-cursor {
+        position: fixed;
+        width: 32px;
+        height: 32px;
+        background-color: #0e0503;
+        border-radius: 50%;
+        pointer-events: none; 
+        z-index: 9999;
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="banner">
+    <div class="headline">i am raj patil</div>
+</div>
+
+<div class="custom-cursor"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+       
+        var headlines = ["i am raj" , " welcome to my web site" , "i am student in rw8, byyyy"];
+
+       
+        function animateHeadline() {
+            var currentIndex = 0;
+            setInterval(function() {
+                $('.headline').fadeOut(100, function() {
+                    $(this).text(headlines[currentIndex]);
+                    $(this).fadeIn(100);
+                });
+                currentIndex = (currentIndex + 1) % headlines.length;
+            }, 1000); 
+        }
+
+      
+        animateHeadline();
+
+  
+        $(document).mousemove(function(e) {
+            $('.custom-cursor').css({
+                top: e.pageY - 16, 
+                left: e.pageX - 16
+            });
+        });
+
+        $(document).mouseenter(function() {
+            $('.custom-cursor').fadeIn(100  );
+        }).mouseleave(function() {
+            $('.custom-cursor').fadeOut(100);
+        });
+    });
+</script>
+
+</body>
+</html>
